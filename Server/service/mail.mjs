@@ -36,6 +36,7 @@ export async function sendVerifyCode(email) {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
+        return error;
       } else {
         console.log("Email enviado: " + info.response);
       }
