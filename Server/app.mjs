@@ -14,7 +14,7 @@ const config = {
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
   port: process.env.MYSQLPORT,
-  database: process.env.MYSQL_DATABASE,
+  database: process.env.MYSQLDATABASE,
 };
 
 const connection = await mysql.createConnection(config);
