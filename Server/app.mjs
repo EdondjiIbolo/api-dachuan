@@ -20,7 +20,7 @@ const config = {
 const connection = await mysql.createConnection(config);
 
 //Middleware para capturar el body de una reques en un post
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.disable("x-powered-by");
 
