@@ -79,8 +79,8 @@ app.post("/verify", async (req, res) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const encriptedCode = bcrypt.hashSync(myPlaintextPassword, salt);
   const insertdata = await connection.query(
-    "INSERT INTO verify ( id,email, secret_word ) VALUES (?,?,?)",
-    [crypto.randomUUID(), email, encriptedCode]
+    "INSERT INTO verify ( id,email, secret_word ) VALUES (?,?)",
+    [email, encriptedCode]
   );
   res
     .status(200)
