@@ -70,8 +70,8 @@ app.post("/login", async (req, res) => {
   res.status(200).json(data);
 });
 app.post("/verify", async (req, res) => {
-  const { email } = req.body;
-  const { otpCode } = await sendVerifyCode(email);
+  const { phone } = req.body;
+  const { otpCode } = await sendVerifyCode(phone);
   console.log(otpCode);
   // verificar el codigo y almacenarlo DB
   const saltRounds = 10;
@@ -79,8 +79,8 @@ app.post("/verify", async (req, res) => {
   const salt = bcrypt.genSaltSync(saltRounds);
   const encriptedCode = bcrypt.hashSync(myPlaintextPassword, salt);
   const insertdata = await connection.query(
-    "INSERT INTO verify ( id,email, secret_word ) VALUES (?,?)",
-    [email, encriptedCode]
+    "INSERT INTO verify (phone, secret_word ) VALUES (?,?)",
+    [phone, encriptedCode]
   );
   res
     .status(200)
