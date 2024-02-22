@@ -6,7 +6,6 @@ import mysql from "mysql2/promise";
 import bcrypt from "bcrypt";
 import { validateUserSignin, validateUserlogin } from "./schema/userSchema.mjs";
 import { sendVerifyCode } from "./service/mail.mjs";
-import { Console } from "node:console";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
