@@ -72,6 +72,7 @@ app.post("/login", async (req, res) => {
 app.post("/verify", async (req, res) => {
   const { email } = req.body;
   const { otpCode } = await sendVerifyCode(email);
+  console.log(otpCode);
   // verificar el codigo y almacenarlo DB
   const saltRounds = 10;
   const myPlaintextPassword = otpCode;
