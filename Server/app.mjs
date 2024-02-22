@@ -13,7 +13,7 @@ const config = {
   host: process.env.MYSQLHOST,
   user: process.env.MYSQLUSER,
   password: process.env.MYSQLPASSWORD,
-  port: process.env.MYSQLPORT,
+  port: process.env.DB_PORT,
   database: process.env.MYSQLDATABASE,
 };
 
