@@ -13,10 +13,10 @@ export async function sendVerifyCode(email) {
         user: "enzombula@gmail.com",
         pass: password,
       },
-      tls: {
-        rejectUnauthorized: false,
-        ca: [fs.readFileSync("./server.crt")],
-      },
+      // tls: {
+      //   rejectUnauthorized: false,
+      //   ca: [fs.readFileSync("./server.crt")],
+      // },
     });
     const { authenticator } = OTP;
     //Generar el token
