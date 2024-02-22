@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node --watch ./Server/app.mjs",
     "build": "vite build",
-    "start": "node ./Server/app.mjs",
+    "start": "node Server/app.mjs",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
