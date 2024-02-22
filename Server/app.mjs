@@ -11,11 +11,11 @@ import { Console } from "node:console";
 const app = express();
 const PORT = process.env.PORT || 3000;
 const config = {
-  host: "localhost",
-  user: "root",
-  password: "",
-  port: "3306",
-  database: "mi_base_de_datos",
+  host: process.env.MYSQLHOST,
+  user: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  port: process.env.MYSQLPORT,
+  database: process.env.MYSQL_DATABASE,
 };
 
 const connection = await mysql.createConnection(config);
