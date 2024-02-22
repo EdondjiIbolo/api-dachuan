@@ -29,6 +29,12 @@ app.disable("x-powered-by");
 //TODO --> MIGRAR A ARQUITECTURA MVC
 app.use((req, res, next) => {
   //verificar si usuario cookies o login
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://dachuan-router.vercel.app/"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
   console.log("hilaaa");
   next();
 });
