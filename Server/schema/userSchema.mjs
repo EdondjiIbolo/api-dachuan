@@ -29,9 +29,9 @@ const sendMessageScheme = z.object({
     invalid_type_error: "name must be a string",
     required_error: "name is required",
   }),
-  username: z.string({
-    invalid_type_error: "username must be a string",
-    required_error: "username is required",
+  surename: z.string({
+    invalid_type_error: "surename must be a string",
+    required_error: "surename is required",
   }),
   email: z.string().email({
     invalid_type_error: "email must be a valid email address",
