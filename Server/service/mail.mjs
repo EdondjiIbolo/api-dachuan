@@ -36,7 +36,7 @@ export async function sendVerifyCode(phone) {
       .create({
         body: `Your verification code is ${otpCode}. For security reasons, do not share this code with anyone.`,
         from: process.env.PHONE_TWILO,
-        to: `+8612356717532`,
+        to: `+${phone}`,
       })
       .then((message) => console.log("SMS enviado :" + message.sid))
       .catch((error) => error);
