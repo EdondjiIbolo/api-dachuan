@@ -4,7 +4,11 @@ import cors from "cors";
 import jwt from "jsonwebtoken";
 import mysql from "mysql2/promise";
 import bcrypt from "bcrypt";
-import { validateUserSignin, validateUserlogin } from "./schema/userSchema.mjs";
+import {
+  validateUserSignin,
+  validateUserlogin,
+  validateDataMessage,
+} from "./schema/userSchema.mjs";
 import { sendVerifyCode } from "./service/mail.mjs";
 
 const app = express();
@@ -149,7 +153,19 @@ app.post("/sign-up", async (req, res) => {
   };
   res.status(201).json(data);
 });
-
+app.post("/contact", async (req, res) => {
+  const data = validateDataMessage(req.body);
+  if (Validatedata.error) {
+    return res.status(400).json({ error: validateData.error.message });
+  }
+  const { name, surename, email, companyName, phone, message, check } =
+    Validatedata.data;
+  const insertMessage = connection.query(
+    "INSERT INTO usuarios ( name, surename, email, companyName , phone ,message, check) VALUES (?,?,?,?,?,?,?)",
+    [name, surename, email, companyName, phone, message, check]
+  );
+  res.status(200).json({ message: "Message have sent successfully" });
+});
 app.post("/recover", async (req, res) => {
   const validateData = validateUserlogin(req.body);
   if (validateData.error) {
