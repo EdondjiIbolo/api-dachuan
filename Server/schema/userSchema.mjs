@@ -48,6 +48,10 @@ const sendMessageScheme = z.object({
     nvalid_type_error: "phone must be a number",
     required_error: "phone is required",
   }),
+  check: z.string({
+    nvalid_type_error: "check must be a number",
+    required_error: "check is required",
+  }),
 });
 
 export const validateUserlogin = (object) => {
