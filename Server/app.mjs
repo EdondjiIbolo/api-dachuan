@@ -28,7 +28,7 @@ app.disable("x-powered-by");
 //TODO --> MIGRAR A ARQUITECTURA MVC
 app.use((req, res, next) => {
   //verificar si usuario cookies o login
-  console.log("hilaaa");
+
   next();
 });
 app.post("/login", async (req, res) => {
@@ -36,13 +36,12 @@ app.post("/login", async (req, res) => {
   if (validateData.error) {
     return res.status(400).json({ error: validateData.error.message });
   }
-  const { email, password } = validateData.data;
+  const { phone, password } = validateData.data;
   const [querdata, _] = await connection.query(
-    "SELECT email, password FROM usuarios WHERE email = ? AND password = ?",
-    [email, password]
+    "SELECT phone, password FROM usuarios WHERE phone = ? AND password = ?",
+    [phone, password]
   );
   const response = await querdata;
-  console.log(email, password);
   if (response.length === 0) {
     res.status(401).json({
       error: "invalid user or password",
@@ -50,8 +49,8 @@ app.post("/login", async (req, res) => {
     return;
   }
   const userInfo = await connection.query(
-    "SELECT * FROM usuarios WHERE email = ?",
-    [email]
+    "SELECT * FROM usuarios WHERE phone = ?",
+    [phone]
   );
 
   const [user] = userInfo[0];
