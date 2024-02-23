@@ -156,7 +156,7 @@ app.post("/sign-up", async (req, res) => {
 app.post("/contact", async (req, res) => {
   const Validatedata = validateDataMessage(req.body);
   if (Validatedata.error) {
-    return res.status(400).json({ error: validateData.error.message });
+    res.status(400).json({ error: validatedata.error.message });
   }
   const { name, surename, email, companyName, phone, message, check } =
     Validatedata.data;
