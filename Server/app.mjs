@@ -96,7 +96,7 @@ app.post("/sign-up", async (req, res) => {
     validateData.data;
   //manerjar el error
   const [querdata, _] = await connection.query(
-    "SELECT email, secret_word FROM tokens WHERE email = ?",
+    "SELECT email, secret_word FROM verify WHERE email = ?",
     [email]
   );
 
@@ -159,7 +159,7 @@ app.post("/recover", async (req, res) => {
   const { email, password, verifyCode } = validateData.data;
   //verificar el codigo de verificacion
   const [querydata, a] = await connection.query(
-    "SELECT email, secret_word FROM tokens WHERE email = ?",
+    "SELECT email, secret_word FROM verify WHERE email = ?",
     [email]
   );
 
