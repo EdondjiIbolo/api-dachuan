@@ -126,7 +126,6 @@ app.post("/sign-up", async (req, res) => {
   // si el suario no existe crearle una nueva cuenta y enviar el token
 
   const user = {
-    id: encriptedCode,
     name,
     username,
     email,
