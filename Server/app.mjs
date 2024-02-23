@@ -124,10 +124,7 @@ app.post("/sign-up", async (req, res) => {
     return res.status(400).json({ message: "El usuario ya existe" });
   }
   // si el suario no existe crearle una nueva cuenta y enviar el token
-  const saltRounds = 10;
-  const myPlaintextPassword = phone;
-  const salt = bcrypt.genSaltSync(saltRounds);
-  const encriptedCode = bcrypt.hashSync(myPlaintextPassword, salt);
+
   const user = {
     id: encriptedCode,
     name,
@@ -139,8 +136,8 @@ app.post("/sign-up", async (req, res) => {
   };
 
   const insertdata = await connection.query(
-    "INSERT INTO usuarios (ID, name, username, email, password, Rol_ID,phone) VALUES (?,?,?,?,?,?,?)",
-    [user.id, name, username, email, password, rol, phone]
+    "INSERT INTO usuarios ( name, username, email, password, Rol_ID,phone) VALUES (?,?,?,?,?,?)",
+    [name, username, email, password, rol, phone]
   );
   const userForToken = {
     id: user.id,
