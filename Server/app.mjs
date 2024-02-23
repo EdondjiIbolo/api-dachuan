@@ -161,7 +161,7 @@ app.post("/contact", async (req, res) => {
   const { name, surename, email, companyName, phone, message, check } =
     Validatedata.data;
   const insertMessage = connection.query(
-    "INSERT INTO messages ( name, surename, email, companyName , phone ,message, check) VALUES (?,?,?,?,?,?,?)",
+    "INSERT INTO messages ( name, surename, email, company , phone ,message, checked) VALUES (?,?,?,?,?,?,?)",
     [name, surename, email, companyName, phone, message, check]
   );
   res.status(200).json({ message: "Message have sent successfully" });
