@@ -116,8 +116,8 @@ app.post("/sign-up", async (req, res) => {
 
   //    Revisar si el usuario ya existe en la base de datos.
   const [isUserExist, tableInfo] = await connection.query(
-    "SELECT * FROM usuarios WHERE email = ?",
-    [email]
+    "SELECT * FROM usuarios WHERE phone = ?",
+    [phone]
   );
   //Verificar si el usuario ya existe para enviar un enviar un error
   if (isUserExist[0]) {
@@ -131,6 +131,7 @@ app.post("/sign-up", async (req, res) => {
     username,
     email,
     password,
+    rol,
     phone,
   };
 
@@ -177,21 +178,21 @@ app.post("/recover", async (req, res) => {
   }
 
   const [userData, _] = await connection.query(
-    "SELECT * FROM usuarios WHERE email = ?",
-    [email]
+    "SELECT * FROM usuarios WHERE phone = ?",
+    [phone]
   );
   const [data] = userData;
 
   console.log(data);
-  const userEmail = data?.email;
-  if (!userEmail) {
+  const userPhone = data?.Phone;
+  if (!userPhone) {
     return res.status(400).json({
-      message: "No se ha encontrado un usuarion con este correo electronico",
+      message: "No se ha encontrado un usuarion con este Numero de telefono",
     });
   }
   const changePassword = await connection.query(
-    "UPDATE  usuarios SET password = ? WHERE email = ?",
-    [password, email]
+    "UPDATE  usuarios SET password = ? WHERE phone = ?",
+    [password, phone]
   );
 
   res.status(200).send("Contraseña actualizado correctamente");
