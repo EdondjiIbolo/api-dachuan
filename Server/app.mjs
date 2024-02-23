@@ -124,9 +124,12 @@ app.post("/sign-up", async (req, res) => {
     return res.status(400).json({ message: "El usuario ya existe" });
   }
   // si el suario no existe crearle una nueva cuenta y enviar el token
-
+  const saltRounds = 10;
+  const myPlaintextPassword = phone;
+  const salt = bcrypt.genSaltSync(saltRounds);
+  const encriptedCode = bcrypt.hashSync(myPlaintextPassword, salt);
   const user = {
-    id: crypto.randomUUID(),
+    id: encriptedCode,
     name,
     username,
     email,
