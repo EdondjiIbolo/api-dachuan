@@ -96,8 +96,8 @@ app.post("/sign-up", async (req, res) => {
     validateData.data;
   //manerjar el error
   const [querdata, _] = await connection.query(
-    "SELECT email, secret_word FROM verify WHERE email = ?",
-    [email]
+    "SELECT phone, secret_word FROM verify WHERE phone = ?",
+    [phone]
   );
 
   const inputUser = verifyCode;
