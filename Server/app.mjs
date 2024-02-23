@@ -156,11 +156,11 @@ app.post("/recover", async (req, res) => {
   if (validateData.error) {
     return res.status(400).json({ error: validateData.error.message });
   }
-  const { email, password, verifyCode } = validateData.data;
+  const { phone, password, verifyCode } = validateData.data;
   //verificar el codigo de verificacion
   const [querydata, a] = await connection.query(
-    "SELECT email, secret_word FROM verify WHERE email = ?",
-    [email]
+    "SELECT phone, secret_word FROM verify WHERE phone = ?",
+    [phone]
   );
 
   const inputUser = verifyCode;
