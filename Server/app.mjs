@@ -198,7 +198,7 @@ app.post("/recover", async (req, res) => {
   const [data] = userData;
 
   console.log(data);
-  const userPhone = data?.Phone;
+  const userPhone = data?.phone;
   if (!userPhone) {
     return res.status(400).json({
       message: "No se ha encontrado un usuarion con este Numero de telefono",
